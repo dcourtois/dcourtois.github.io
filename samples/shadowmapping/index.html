@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>Shadow Mapping</title>
+	<script src="../../resources/libs/require.js"></script>
+	<script src="../../resources/libs/cgl.js"></script>
+	<script src="../../resources/libs/dat.gui.js"></script>
+	<script src="../../resources/loading.js"></script>
+	<link href="../../resources/sample.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<div id="content">
+		<div id="democontent">
+			<div id="canvascontainer">
+				<canvas id="webgl2"></canvas>
+				<canvas id="loading"></canvas>
+			</div>
+			<div id="gui"></div>
+		</div>
+		<div id="text">
+			<h2>Shadow Mapping</h2>
+
+			<p>No filtering, no fancy effect. I might implement more advanced shadow
+			mapping algorithms in the future, but this sampler was mostly done to test some ideas
+			on the renderer, thus the basic implementation.</p>
+
+			<h3>Controls</h3>
+			<ul>
+				<li><b>left click:</b> rotate the camera around the focus point.</li>
+				<li><b>middle click:</b> move the focus point in a screen aligned plane.</li>
+				<li><b>right click:</b> zoom in / out.</li>
+			</ul>
+
+			<a href="../../"><h4 class="fullWidth center">Back To Previous Page</h4></a>
+		</div>
+	</div>
+
+	<!-- The application -->
+	<script src="app.js"></script>
+</body>
+</html>

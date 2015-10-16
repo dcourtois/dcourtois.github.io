@@ -1,0 +1,142 @@
+{
+	"default": {
+		"vsFile": "default.vs.glsl",
+		"fsFile": "default.fs.glsl",
+		"attributes": [
+			{ "semantic": "position", "name": "aPosition" },
+			{ "semantic": "normal", "name": "aNormal" }
+		],
+		"uniforms": [
+			{ "name": "uNormal", "reference": "normal" },
+			{ "name": "uWorldViewProjection", "reference": "worldViewProjection" },
+			{ "name": "uLightDiffuse", "reference": "lightDiffuse", "index": 0 },
+			{ "name": "uLightInverseDirection", "reference": "lightInverseDirection", "index": 0 },
+			{ "name": "uMaterialDiffuse", "reference": "materialDiffuse" },
+			{ "name": "uMaterialAmbient", "reference": "materialAmbient" }
+		]
+	},
+	"default_vcol": {
+		"vsFile": "default.vs.glsl",
+		"fsFile": "default.fs.glsl",
+		"attributes": [
+			{ "semantic": "position", "name": "aPosition" },
+			{ "semantic": "normal", "name": "aNormal" },
+			{ "semantic": "color", "name": "aColor" }
+		],
+		"uniforms": [
+			{ "name": "uNormal", "reference": "normal" },
+			{ "name": "uWorldViewProjection", "reference": "worldViewProjection" },
+			{ "name": "uLightDiffuse", "reference": "lightDiffuse", "index": 0 },
+			{ "name": "uLightInverseDirection", "reference": "lightInverseDirection", "index": 0 },
+			{ "name": "uMaterialDiffuse", "reference": "materialDiffuse" },
+			{ "name": "uMaterialAmbient", "reference": "materialAmbient" }
+		],
+		"defines": [
+			"VERTEX_COLOR"
+		]
+	},
+	"default_diffuse": {
+		"vsFile": "default.vs.glsl",
+		"fsFile": "default.fs.glsl",
+		"attributes": [
+			{ "semantic": "position", "name": "aPosition" },
+			{ "semantic": "normal", "name": "aNormal" },
+			{ "semantic": "texcoord0", "name": "aTexcoord0" }
+		],
+		"uniforms": [
+			{ "name": "uNormal", "reference": "normal" },
+			{ "name": "uWorldViewProjection", "reference": "worldViewProjection" },
+			{ "name": "uLightDiffuse", "reference": "lightDiffuse", "index": 0 },
+			{ "name": "uLightInverseDirection", "reference": "lightInverseDirection", "index": 0 },
+			{ "name": "uMaterialDiffuse", "reference": "materialDiffuse" },
+			{ "name": "uMaterialAmbient", "reference": "materialAmbient" },
+			{ "name": "uDiffuseSampler", "reference": "texture", "index": 0 }
+		],
+		"defines": [
+			"DIFFUSE"
+		]
+	},
+	"default_diffuse_normal": {
+		"vsFile": "default.vs.glsl",
+		"fsFile": "default.fs.glsl",
+		"attributes": [
+			{ "semantic": "position", "name": "aPosition" },
+			{ "semantic": "normal", "name": "aNormal" },
+			{ "semantic": "texcoord0", "name": "aTexcoord0" }
+		],
+		"uniforms": [
+			{ "name": "uWorld", "reference": "world" },
+			{ "name": "uNormal", "reference": "normal" },
+			{ "name": "uWorldViewProjection", "reference": "worldViewProjection" },
+			{ "name": "uCameraPosition", "reference": "activeCameraPosition" },
+			{ "name": "uLightDiffuse", "reference": "lightDiffuse", "index": 0 },
+			{ "name": "uLightInverseDirection", "reference": "lightInverseDirection", "index": 0 },
+			{ "name": "uMaterialDiffuse", "reference": "materialDiffuse" },
+			{ "name": "uMaterialAmbient", "reference": "materialAmbient" },
+			{ "name": "uDiffuseSampler", "reference": "texture", "index": 0 },
+			{ "name": "uNormalSampler", "reference": "texture", "index": 1 }
+		],
+		"defines": [
+			"DIFFUSE",
+			"NORMAL"
+		]
+	},
+	"default_diffuse_specular": {
+		"vsFile": "default.vs.glsl",
+		"fsFile": "default.fs.glsl",
+		"attributes": [
+			{ "semantic": "position", "name": "aPosition" },
+			{ "semantic": "normal", "name": "aNormal" },
+			{ "semantic": "texcoord0", "name": "aTexcoord0" }
+		],
+		"uniforms": [
+			{ "name": "uWorld", "reference": "world" },
+			{ "name": "uNormal", "reference": "normal" },
+			{ "name": "uWorldViewProjection", "reference": "worldViewProjection" },
+			{ "name": "uCameraPosition", "reference": "activeCameraPosition" },
+			{ "name": "uLightDiffuse", "reference": "lightDiffuse", "index": 0 },
+			{ "name": "uLightInverseDirection", "reference": "lightInverseDirection", "index": 0 },
+			{ "name": "uMaterialDiffuse", "reference": "materialDiffuse" },
+			{ "name": "uMaterialAmbient", "reference": "materialAmbient" },
+			{ "name": "uMaterialSpecular", "reference": "materialSpecular" },
+			{ "name": "uMaterialSpecularHardness", "reference": "materialSpecularHardness" },
+			{ "name": "uMaterialSpecularPower", "reference": "materialSpecularPower" },
+			{ "name": "uDiffuseSampler", "reference": "texture", "index": 0 },
+			{ "name": "uSpecularSampler", "reference": "texture", "index": 1 }
+		],
+		"defines": [
+			"DIFFUSE",
+			"SPECULAR"
+		]
+	},
+	"default_diffuse_normal_specular": {
+		"vsFile": "default.vs.glsl",
+		"fsFile": "default.fs.glsl",
+		"attributes": [
+			{ "semantic": "position", "name": "aPosition" },
+			{ "semantic": "normal", "name": "aNormal" },
+			{ "semantic": "texcoord0", "name": "aTexcoord0" }
+		],
+		"uniforms": [
+			{ "name": "uWorld", "reference": "world" },
+			{ "name": "uNormal", "reference": "normal" },
+			{ "name": "uWorldViewProjection", "reference": "worldViewProjection" },
+			{ "name": "uCameraPosition", "reference": "activeCameraPosition" },
+			{ "name": "uLightDiffuse", "reference": "lightDiffuse", "index": 0 },
+			{ "name": "uLightInverseDirection", "reference": "lightInverseDirection", "index": 0 },
+			{ "name": "uMaterialDiffuse", "reference": "materialDiffuse" },
+			{ "name": "uMaterialAmbient", "reference": "materialAmbient" },
+			{ "name": "uMaterialSpecular", "reference": "materialSpecular" },
+			{ "name": "uMaterialSpecularHardness", "reference": "materialSpecularHardness" },
+			{ "name": "uMaterialSpecularPower", "reference": "materialSpecularPower" },
+			{ "name": "uDiffuseSampler", "reference": "texture", "index": 0 },
+			{ "name": "uNormalSampler", "reference": "texture", "index": 1 },
+			{ "name": "uSpecularSampler", "reference": "texture", "index": 2 }
+		],
+		"defines": [
+			"DIFFUSE",
+			"NORMAL",
+			"SPECULAR"
+		]
+	}
+}

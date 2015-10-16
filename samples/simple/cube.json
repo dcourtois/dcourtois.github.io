@@ -1,0 +1,149 @@
+{
+	"sceneGraph": [
+		{
+			"name": "cube",
+			"id": 0,
+			"components": [
+				{
+					"type": "Transformation"
+				},
+				{
+					"type": "Mesh",
+					"descriptor": {
+						"vb": 3,
+						"ib": 2,
+						"shader": 1,
+						"subsets": [
+							{
+								"count": 36,
+								"offset": 0,
+								"diffuse": [1, 1, 1, 1],
+								"specular": [1, 1, 1, 1],
+								"ambient": [1, 1, 1, 1],
+								"power": 1
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "camera",
+			"id": 1,
+			"components": [
+				{
+					"type": "Camera",
+					"descriptor": {
+						"near": 0.2
+					}
+				},
+				{
+					"type": "CameraController",
+					"descriptor": {
+						"position": [0, 1, 10]
+					}
+				}
+			]
+		}
+	],
+	"resources": [
+		{
+			"type": "Shader",
+			"id": 1,
+			"descriptor": {
+				"vs": [
+					"uniform mat4 uWorldViewProjection;",
+					"attribute mediump vec3 aPosition;",
+					"attribute mediump vec4 aColor;",
+					"varying mediump vec4 vColor;",
+					"void main()",
+					"{",
+					"    gl_Position = uWorldViewProjection * vec4(aPosition, 1);",
+					"    vColor = aColor;",
+					"}"
+				],
+				"fs": [
+					"varying mediump vec4 vColor;",
+					"void main()",
+					"{",
+					"    gl_FragColor = vColor;",
+					"}"
+				],
+				"attributes": [
+					{ "semantic": "position", "name": "aPosition" },
+					{ "semantic": "color", "name": "aColor" }
+				],
+				"uniforms": [
+					{ "name": "uWorldViewProjection", "type": "mat4", "reference": "worldViewProjection" }
+				]
+			}
+		},
+		{
+			"type": "IndexBuffer",
+			"id": 2,
+			"descriptor": {
+				"type": "GL_UNSIGNED_BYTE",
+				"usage": "GL_STATIC_DRAW",
+				"data": [
+					0, 3, 1,	0, 2, 3,
+					0, 1, 5,	0, 5, 4,
+					0, 6, 2,	0, 4, 6,
+					2, 6, 7,	2, 7, 3,
+					1, 3, 7,	1, 7, 5,
+					4, 5, 7,	4, 7, 6
+				]
+			}
+		},
+		{
+			"type": "VertexBuffer",
+			"id": 3,
+			"descriptor": {
+				"usage": "GL_STATIC_DRAW",
+				"streams": [
+					{
+						"semantic": "position",
+						"type": "GL_FLOAT",
+						"size": 3,
+						"data": [
+							-1, -1, -1,
+							1, -1, -1,
+							-1, 1, -1,
+							1, 1, -1,
+							-1, -1, 1,
+							1, -1, 1,
+							-1, 1, 1,
+							1, 1, 1
+						]
+					},
+					{
+						"semantic": "color",
+						"type": "GL_UNSIGNED_BYTE",
+						"size": 4,
+						"data": [
+							0, 0, 0, 255,
+							255, 0, 0, 255,
+							0, 255, 0, 255,
+							255, 255, 0, 255,
+							0, 0, 255, 255,
+							255, 0, 255, 255,
+							0, 255, 255, 255,
+							255, 255, 255, 255
+						]
+
+					}
+				]
+			}
+		}
+	],
+	"passes": [
+		{
+			"type": "UpdatePass"
+		},
+		{
+			"type": "RenderPass",
+			"camera": {
+				"id": 1
+			}
+		}
+	]
+}

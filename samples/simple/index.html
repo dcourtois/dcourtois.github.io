@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>CitronWebGL Samples - simple</title>
+	<script src="../../resources/libs/require.js"></script>
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		#viewport {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body onload='startGL("viewport");'>
+	<canvas id="viewport"></canvas>
+	<script>
+		function startGL(canvasID) {
+			require(["../../resources/libs/cgl"], function () {
+				require([
+					"Core/Engine",
+					"Core/EventHandler",
+					"Components/Transformation",
+					"Loading/SceneLoader",
+					"Math/Math"
+				], function (
+					Engine,
+					EventHandler,
+					Transformation,
+					SceneLoader
+				) {
+					"use strict";
+
+					// get the canvas and create the engine
+					var canvas = document.getElementById(canvasID),
+						engine = new Engine(canvas, { antialias: true });
+
+					// load a test scene.
+					// this scene contains everything : the passes, the model and its shader, and a
+					// camera with a model view type controller.
+					var loader = new SceneLoader(engine, { async: false });
+					loader.load("./cube.json", function () {
+
+						// configure clear color and a few default states
+						var gl = engine.gl;
+						gl.enable(gl.DEPTH_TEST);
+
+						// a few vars for the cube rotation
+						var rotation = 0;
+						var rotationIncrement = 1;
+
+						// get the cube and its matrix
+						var cube = engine.sceneGraph.find("name", "cube", true);
+						var cubeMatrix = cube.getComponent(Transformation.type).relativeMatrix;
+
+						// add an event listener to toggle animation
+						var listenerID = engine.eventHandler.addEventListener(this, function (event) {
+							if (event.type === EventHandler.EVENTS.KEYDOWN && event.key === EventHandler.KEYS.ESCAPE) {
+								// toggle rotation on / off
+								rotationIncrement = 1 - rotationIncrement;
+							}
+						});
+
+						// replace the default render method of the engine by our own
+						var render = engine.render;
+						engine.render = function () {
+							// update the rotation value
+							rotation += rotationIncrement;
+							if (rotation >= 360) {
+								rotation -= 360;
+							}
+
+							// update the cube matrix
+							cubeMatrix.rotationY(Math.degToRad(rotation));
+
+							// call the engine update method
+							render.bind(engine)();
+						}
+
+						// start the engine loop
+						engine.start();
+					});
+				});
+			});
+		};
+	</script>
+</body>
+</html>
