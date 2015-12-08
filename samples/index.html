@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>Demos WebGL</title>
+	<style>
+		@font-face {
+			font-family: citron;
+			src: url("resources/font.ttf");
+		}
+		body {
+			font-family: citron;
+			text-align: justify;
+		}
+		a {
+			color: #59B24B;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		li {
+			margin-bottom: 10px;
+		}
+		article {
+			width: 400px;
+			margin: auto;
+		}
+		@media screen and (min-width: 700px) {
+			article {
+				width: 600px;
+				margin: auto;
+			}
+		}
+		@media screen and (min-width: 900px) {
+			article {
+				width: 800px;
+				margin: auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<article>
+		<h2>WebGL Demos</h2>
+
+		<p>Here are a few demos I used to test various features of my personal Javascript / WebGL
+		engine.</p>
+
+		<p><b>Note:</b> These samples were only tested on MacOS 10.9 and Windows 7, using the latest version of:
+		<ul>
+			<li><a href="https://www.mozilla.org">Firefox</a></li>
+			<li><a href="https://www.google.com/chrome">Chrome</a></li>
+		</ul>
+		
+		<p>I highly recommend testing these samples using either one of those browser. As for the operating system,
+		I tested on a MacBook Pro running OSX 10.8, and on a PC with Windows 7. On the Mac, I tested using the integrated
+		Intel graphic chipset, so it should run on pretty much any decent hardware.</p>
+
+		<p><b>Mobile devices</b> : Only Android devices currently have WebGL support. I only tested
+		these demos on a Galaxy S3 using the latest version of <i>Firefox Mobile</i>. There is a rendering
+		bug in the SSAO demo though. I didn't have the time to investigate the cause, but it's on my todo.</p>
+
+		<p></p>
+		<p>Here is the list of samples currently available. Please note that some models are quite heavy
+		(<i>Light House</i> and <i>Sponza</i> are respectively 5Mb and 27Mb for instance)
+		and my server is not a really fast one. So expect a few (or many) minutes of waiting before some scenes
+		starts to show up. The approximate size of the samples are specified.</p>
+
+		<ul>
+			<li><a href="simple/">Rotating Cube</a> : My very first sample, the "Hello World" of the 3D world :)</li>
+			<li><a href="lighthouse/">Light House (5Mb)</a> : A simple scene with no texture, standard diffuse shading.</li>
+			<li><a href="sponza/">Sponza (27Mb)</a> : The famous Sponza model, fully textured, with normal mapping and basic phong shading.</li>
+			<li><a href="shadowmapping/">Shadow Mapping</a> : The most basic shadow mapping implementation.</li>
+			<li><a href="raymarching/">Ray Marching</a> : Test of raymarching and distance fields.</li>
+			<li><a href="../unittests/">Unit Tests</a> : Not a demo, but convenient to have it here. These tests are far from convering the entire engine.</li>
+		</ul>
+	</article>
+</body>
+
+</html>

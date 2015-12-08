@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>Test Loading Binaries</title>
+	<script src="../../lib/cgl.min.js"></script>
+</head>
+
+<body onload='test();'>
+	<canvas></canvas>
+	<div id="text"></div>
+<script>
+
+var text = document.getElementById("text");
+
+function loadBinary(url, async, ready) {
+	"use strict";
+
+	var req = new XMLHttpRequest();
+	req.open("GET", url, async);
+	req.responseType = "arraybuffer";
+	req.onreadystatechange = function () {
+		if (req.readyState === 4 && req.status === 200) {
+			try {
+				ready(req.response);
+			} catch (e) {
+				ready(undefined);
+			}
+		} else {
+			ready(undefined);
+		}
+	};
+	req.send(null);
+}
+
+function test() {
+	"use strict";
+
+	loadBinary("vase_plant.png", true, function (data) {
+		text.innerHTML = data !== undefined ? "retrieved " + data.byteLength + " bytes" : "couldn't retrieve data";
+	});
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CitronWebGL unit tests</title>
+		<script src="../libs/require.js"></script>
+		<script src="../libs/cgl.js"></script>
+		<link href="../libs/qunit/qunit.css" rel="stylesheet" type="text/css">
+		<style>
+			@import url('../libs/qunit/qunit.css');
+		</style>
+	</head>
+	<body>
+		<div id="qunit"></div>
+		<script src="../libs/qunit/qunit.js"></script>
+		<script src="../libs/qunit/plugins/close.js"></script>
+		<script src="../libs/qunit/plugins/image.js"></script>
+
+		<script>
+			// configure QUnit
+			QUnit.config.urlConfig = [];
+		</script>
+
+		<script src="tests/Components/Camera.test.js"></script>
+		<script src="tests/Components/CameraController.test.js"></script>
+		<script src="tests/Components/Mesh.test.js"></script>
+		<script src="tests/Components/Light.test.js"></script>
+		<script src="tests/Components/Transformation.test.js"></script>
+
+		<script src="tests/Core/Engine.test.js"></script>
+		<script src="tests/Core/Node.test.js"></script>
+
+		<script src="tests/Math/Math.test.js"></script>
+		<script src="tests/Math/Vec3.test.js"></script>
+
+		<script src="tests/Resources/IndexBuffer.test.js"></script>
+		<script src="tests/Resources/ResourceHandle.test.js"></script>
+		<script src="tests/Resources/ResourceManager.test.js"></script>
+		<script src="tests/Resources/Shader.test.js"></script>
+		<script src="tests/Resources/Texture.test.js"></script>
+		<script src="tests/Resources/VertexBuffer.test.js"></script>
+
+		<script src="tests/States/BlendState.test.js"></script>
+		<script src="tests/States/CullState.test.js"></script>
+		<script src="tests/States/DepthState.test.js"></script>
+		<script src="tests/States/StateBlock.test.js"></script>
+		<script src="tests/States/WriteMaskState.test.js"></script>
+
+		<script src="tests/Utils/Array.test.js"></script>
+		<script src="tests/Utils/File.test.js"></script>
+		<script src="tests/Utils/GLUtils.test.js"></script>
+		<script src="tests/Utils/String.test.js"></script>
+		<script src="tests/Utils/UID.test.js"></script>
+		<script src="tests/Utils/Utils.test.js"></script>
+
+		<script src="tests/Language.test.js"></script>
+	</body>
+</html>

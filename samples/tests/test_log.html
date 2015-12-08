@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>test console.log override</title>
+
+	<!-- the page css -->
+	<style>
+		@font-face {
+			font-family: code;
+			src: url("../SourceCodePro-Regular.ttf");
+		}
+		body {
+			font-family: code;
+			font-size: 12px;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+		#log_content {
+			left: 0;
+			bottom: 0;
+			height: 150px;
+			width: 100%;
+			padding-right: 30px;
+			padding-bottom: 15px;
+			position: absolute;
+		}
+		#log {
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.4);
+			padding: 5px 20px 10px 5px;
+			color: #fff;
+			z-index: 2;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+	</style>
+
+	<script>
+
+		var log = (function () {
+			var oldLog = console.log;
+			return function (text) {
+				oldLog.bind(console)(text);
+			}
+		})();
+		console.log = log;
+
+		function test() {
+			"use strict";
+
+			// override our log method
+			var oldLog = log;
+			var logDiv = document.getElementById("log");
+			log = function (text) {
+				oldLog(text);
+				logDiv.innerHTML += text + "<br>";
+			};
+			console.log = log;
+
+
+			// test
+			log("log");
+			log("log");
+			log("log");
+			log("log");
+			log("log");
+			log("log");
+			log("log");
+			log("log");
+			console.log("console.log");
+			console.log("console.log");
+			console.log("console.log");
+			console.log("console.log");
+			console.log("console.log");
+			console.log("console.log");
+			console.log("console.log");
+
+		}
+
+	</script>
+</head>
+
+<body onload='test();'>
+	<div id="log_content">
+		<div id="log"></div>
+	</div>
+</body>
+</html>

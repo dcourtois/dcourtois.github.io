@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Test Javascript Timing</title>
+		<script>
+			function start() {
+				"use strict";
+
+				// the variables needed to compute frame times, etc.
+				var lastTime = Date.now(),
+					totalTime = 0,
+					currentTime = undefined,
+					frameTime = 0,
+					ticks = 0;
+
+				function test() {
+					// update ticks
+					++ticks;
+
+					// update time
+					currentTime = Date.now();
+					frameTime = currentTime - lastTime;
+					totalTime += frameTime
+
+					if (totalTime >= 2000) {
+						// after 2 seconds, stop the test
+						window.clearInterval(interval);
+
+						// log the total number of ticks
+						console.log("ticks: " + ticks);
+					} else {
+						// log the total elapsed time, and the time since last tick
+						console.log("" + totalTime + "  " + frameTime);
+
+						// advance time
+						lastTime = currentTime;
+					}
+				}
+
+				// set our test function with a "run as fast as you can" interval
+				var interval = window.setInterval(test, 0);
+			}
+		</script>
+	</head>
+	<body onload='start();'>
+	</body>
+</html>

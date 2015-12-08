@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>Test Loading Binaries</title>
+
+	<style>
+		@font-face {
+			font-family: citron_code;
+			src: url("../resources/font_fixed.ttf");
+		}
+		body {
+			font-family: citron_code;
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="text"></div>
+	<script>
+		var text = document.getElementById("text");
+
+		function writeLine(line) {
+			text.innerHTML += line + "<br>";
+		};
+		
+		function fileExists(url, result) {
+			"use strict";
+
+			// create our request
+			var request = new XMLHttpRequest();
+
+			// only retrieve the header, and do it asynchronously
+			request.open("HEAD", url, true);
+
+			// watch for state changes
+			request.onreadystatechange = function () {
+				// 2 is the "HEADERS_RECEIVED" message, which is what we need
+				if (request.readyState === 2) {
+					// notify
+					result(request.status === 200);
+				}
+			};
+
+			// send the request
+			request.send();
+		}
+
+		function load(url, success, failure) {
+			"use strict";
+
+			// create our request
+			var request = new XMLHttpRequest();
+
+			// get the file asynchronously
+			request.open("GET", url, true);
+
+			// watch for state changes
+			request.onreadystatechange = function () {
+				// 4 is the "DONE" message
+				if (request.readyState === 4) {
+					if (request.status === 200) {
+						// we got the message, yay
+						success(request.response);
+					} else {
+						// something went wrong
+						failure(request.status);
+					}
+				}
+			};
+
+			// send the request
+			request.send();
+		}
+
+		fileExists("vase_plant.png", function (exists) {
+			writeLine(exists ? "vase_plant.png - exists" : "vase_plant.png - doesn't exist");
+		});
+		fileExists("foo.png", function (exists) {
+			writeLine(exists ? "foo.png - exists" : "foo.png - doesn't exist");
+		});
+
+		writeLine("");
+		load("vase_plant.png", function (content) {
+			writeLine("vase_plant.png loaded");
+		}, function (error) {
+			writeLine("vase_plant.png not loaded - " + error);
+		});
+
+		load("foo.png", function (content) {
+			writeLine("foo.png loaded");
+		}, function (error) {
+			writeLine("foo.png not loaded - " + error);
+		});
+	</script>
+</body>
+</html>

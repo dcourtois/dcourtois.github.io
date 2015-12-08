@@ -1,0 +1,1 @@
+function startGL(a){"use strict";var e=new Engine(document.getElementById(a),{premultipliedAlpha:!1,antialias:!0,debug:!1});e.gl.disable(e.gl.DEPTH_TEST),e.gl.disable(e.gl.CULL_FACE),e.gl.viewport(0,0,e.canvas.width,e.canvas.height),e.passes.push(new LoadingPass(e)),e.start()}

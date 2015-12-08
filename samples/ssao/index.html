@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>SSAO</title>
+	<script src="../../libs/require.js"></script>
+	<script src="../../libs/cgl.js"></script>
+	<script src="../resources/dat.gui.js"></script>
+	<script src="../resources/loading.js"></script>
+	<link href="../resources/sample.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<div id="content">
+		<div id="democontent">
+			<div id="canvascontainer">
+				<canvas id="webgl2"></canvas>
+				<canvas id="loading"></canvas>
+			</div>
+			<div id="gui"></div>
+		</div>
+		<div id="text">
+			<h2>Screen-Space Ambient Occlusion</h2>
+
+			<p>A really simplified description of ambient occlusion would be: the more
+			occluded by nearby geometry a surface is, the less ambient light it's likely to receive.
+			For instance, a flat surface will receive any ray of light comming to it, whereas
+			the interior of a cylinder will only receive light coming from its opening.</p>
+
+			<p>In real-time this effect can be reproduced using the depth buffer
+			to reconstruct an approximation of the geometry around shaded fragments.</p>
+
+			<p>The algorithm used here is a really inefficient / naïve implementation
+			of the Crytek method, which is explained
+			<a href="http://john-chapman-graphics.blogspot.fr/2013/01/ssao-tutorial.html">here</a>,
+			and in more details in the book <i>Shader X<sup>7</sup> (page 411)</i>.</p>
+
+			<p>Here is roughly how it works. For each fragment:</p>
+			<ul>
+				<li>recreate the fragment's position in view space</li>
+				<li>create random samples in a sphere around this view space position</li>
+				<li>project the samples, and check if they are behind the depth stored in the buffer</li>
+			</ul>
+
+			<p>Depending on the number of samples which are visible, we have our approximation of the
+			ambient occlusion term.</p>
+
+			<p>This method suffers from many artefacts. The 2 main ones are:</p>
+			<ul>
+				<li>sampling in a sphere instead of an hemisphere makes a perfectly flat surface half
+				occluded</li>
+				<li>approximating the geometry from the depth buffer introduces errors du to depth
+				discontinuities</li>
+			</ul>
+
+			<p>The first problem can be fixed using a more advanced sampling method. Such methods are
+			described in the link provided, and also in the <i>Shader X<sup>7</sup></i> book, but since
+			it requires normals, I'll wait for <i>drawBuffers</i> support in WebGL to test it.</p>
+
+			<p>The second problem is mostly adressed by taking depth gaps into account when computing
+			the AO term and blurring the result.</p>
+
+			<h3>Controls</h3>
+			<ul>
+				<li><b>left click:</b> rotate the camera around the focus point.</li>
+				<li><b>middle click:</b> move the focus point in a screen aligned plane.</li>
+				<li><b>right click:</b> zoom in / out.</li>
+			</ul>
+
+			<h3>Sources</h3>
+
+			<p>The model is <a href="http://www.blendswap.com/blends/view/73246">Low poly tiny planet, by <i>Alex Pushilin</i></a></p>
+
+			<a href="../"><h4 class="fullWidth center">Back To Previous Page</h4></a>
+		</div>
+	</div>
+
+	<!-- The application -->
+	<script src="app.js"></script>
+</body>
+</html>

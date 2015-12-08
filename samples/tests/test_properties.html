@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<meta charset="UTF-8">
+	<title>Test Properties</title>
+
+	<style>
+		@font-face {
+			font-family: citron_code;
+			src: url("../resources/font_fixed.ttf");
+		}
+		body {
+			font-family: citron_code;
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="text"></div>
+	<script>
+		var text = document.getElementById("text");
+
+		function Class(def) {
+			var test = def;
+			Object.defineProperty(this, "test", {
+				enumerable: true,
+				get: function () {
+					console.log("Class.test - get");
+					return test;
+				},
+				set: function (value) {
+					console.log("Class.test - set");
+					test = value;
+				}
+			});
+		};
+
+		var foo = new Class("foo - default");
+		var bar = new Class("bar - default");
+		text.innerHTML += "foo - " + foo.test + "<br>";
+		text.innerHTML += "bar - " + bar.test + "<br>";
+		foo.test = "foo - new value";
+		bar.test = "bar - new value";
+		text.innerHTML += "foo - " + foo.test + "<br>";
+		text.innerHTML += "bar - " + bar.test + "<br>";
+	</script>
+</body>
+</html>

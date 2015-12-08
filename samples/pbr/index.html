@@ -3,7 +3,7 @@
  
 <head>
 	<meta charset="UTF-8">
-	<title>Sponza</title>
+	<title>Shadow Mapping</title>
 	<script src="../../libs/require.js"></script>
 	<script src="../../libs/cgl.js"></script>
 	<script src="../resources/dat.gui.js"></script>
@@ -17,20 +17,14 @@
 		<div id="democontent">
 			<div id="canvascontainer">
 				<canvas id="webgl2"></canvas>
-				<canvas id="loading"></canvas>
 			</div>
+			<a class="button" onmousedown="takeScreenshot(this);" href="" download="">Screenshot</a>
 			<div id="gui"></div>
 		</div>
 		<div id="text">
-			<h2>Sponza & normal mapping</h2>
+			<h2>Physically Based Rendering</h2>
 
-			<p>This demo is my second one, created to test the engine with
-			a heavier scene, and with textures.</p>
-
-			<p>The shading used is a basic phong shading. Since normal maps were already
-			provided with the model, I decided to give them a try and took this
-			opportunity to implement it <a href="http://www.thetenthplanet.de/archives/1180">
-			without using precomputed tangents.</a></p>
+			<p></p>
 
 			<h3>Controls</h3>
 			<ul>
@@ -39,18 +33,17 @@
 				<li><b>right click:</b> zoom in / out.</li>
 			</ul>
 
-			<h3>Sources</h3>
-
-			<p>The model is the famous Sponza model remodelled by <i>Frank Meinl</i> at Crytek,
-			which I downloaded from the
-			<a href="http://graphics.cs.williams.edu/data/meshes.xml">McGuire Graphics Data</a>
-			repository.</p>
-			
 			<a href="../"><h4 class="fullWidth center">Back To Previous Page</h4></a>
 		</div>
 	</div>
 
 	<!-- The application -->
 	<script src="app.js"></script>
+	<script>
+		function takeScreenshot(link) {
+			link.download = "screenshot-" + Date.now() + ".png";
+			link.href = document.getElementById('webgl2').toDataURL("image/png");
+		}
+	</script>
 </body>
 </html>
